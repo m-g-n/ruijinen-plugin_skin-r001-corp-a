@@ -1,0 +1,19 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+// @use "_foundation/variable" as v;
+// @use "_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.rje-r002lp-a_pagination_arrow{
+	display: inline-block;
+	width: 18px;
+	height: 6px;
+	background-size: contain;
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%2218%22%20height%3D%226%22%20viewBox%3D%220%200%2018%206%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M0%205H16L12%201%22%20stroke%3D%22%238F8F8F%22%2F%3E%3C%2Fsvg%3E');
+	&.--left{
+		transform: scale(-1, 1);
+	}
+}

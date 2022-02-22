@@ -1,0 +1,17 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../_foundation/variable" as v;
+@use "../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.rje-r002lp-a_entry_subtitle{
+	@include i.smb-section-subtitle;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: i.px_to_rem(12);
+	color: var(--accent-color,#cd162c);
+}

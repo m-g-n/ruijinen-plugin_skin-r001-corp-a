@@ -1,0 +1,47 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../_foundation/variable" as v;
+@use "../../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.c-widget{
+	> h2{
+		@include i.heading2;
+	}
+	> h3{
+		@include i.heading3;
+	}
+	> h4{
+		@include i.heading4;
+	}
+	> ul{
+		> li::marker{
+			color:var(--accent-color,#cd162c);
+		}
+	}
+	p{
+		@include i.paragraph;
+	}
+	.wp-block-group > .wp-block-group__inner-container{
+		> h2{
+			@include i.heading2;
+		}
+		> h3{
+			@include i.heading3;
+		}
+		> h4{
+			@include i.heading4;
+		}
+		> ul{
+			> li::marker{
+				color:var(--accent-color,#cd162c);
+			}
+		}
+		p{
+			@include i.paragraph;
+		}
+	}
+}

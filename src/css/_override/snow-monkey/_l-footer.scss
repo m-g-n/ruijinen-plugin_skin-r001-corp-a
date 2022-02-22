@@ -1,0 +1,35 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../_foundation/variable" as v;
+@use "../../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+//ウィジェットエリア
+.l-footer-widget-area{
+	padding-top: i.px_to_rem(30);
+	padding-bottom: 0;
+	border-top: none;
+	.c-row{
+		margin-bottom: 0;
+	}
+}
+.l-footer-widget-area__item:not(:root){
+	margin-bottom: 0 !important;
+	a{
+		// text-decoration: none;
+		color: var(--_color-text,#333);
+	}
+}
+
+//コピーライト
+.c-copyright{
+	display: flex;
+	justify-content: center;
+	padding: i.px_to_rem(20);
+	background-color: unset;
+	font-size: i.px_to_rem(12);
+	color: var(--_color-text,#333);
+}

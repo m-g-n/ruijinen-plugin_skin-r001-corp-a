@@ -1,0 +1,52 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../_foundation/variable" as v;
+@use "../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.rje-r002lp-a_prev_next_nav{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: i.px_to_rem(32);
+	border-top: 1px solid #999;
+	@include i.mq(md){
+		padding-top: i.px_to_rem(64);
+	}
+}
+
+.rje-r002lp-a_prev_next_nav__item{
+	display: flex;
+	min-width: i.px_to_rem(110);
+	&--next{
+		padding-right: i.px_to_rem(24);
+		@include i.mq(lg){
+			padding-right: i.px_to_rem(60);
+		}
+		
+	}
+	&--prev{
+		padding-left: i.px_to_rem(24);
+		@include i.mq(lg){
+			padding-left: i.px_to_rem(60);
+		}
+	}
+	a{
+		color: var(--_color-text,#333);
+		text-decoration: none;
+		&:hover{
+			opacity: 0.5;
+		}
+	}
+	i{
+		&.--left{
+			margin-right: i.px_to_rem(20);
+		}
+		&.--right{
+			margin-left: i.px_to_rem(20);
+		}
+	}
+}

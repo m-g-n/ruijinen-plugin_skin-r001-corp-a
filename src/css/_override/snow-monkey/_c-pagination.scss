@@ -1,0 +1,28 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../_foundation/variable" as v;
+@use "../../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.c-pagination:not(:root){ 
+	@include i.mq(lg){
+		margin-top: i.px_to_rem(64);
+	}
+}
+.c-pagination__item,
+.c-pagination__item-ellipsis,
+.c-pagination__item-link{
+	width: i.px_to_rem(32);
+	height: i.px_to_rem(32);
+	margin-right: 6px;
+	margin-left: 6px;
+	border-radius: 50%;
+	font-size: 1rem;
+}
+.c-pagination__item-ellipsis,
+.c-pagination__item-link{
+	background-color: unset;
+}

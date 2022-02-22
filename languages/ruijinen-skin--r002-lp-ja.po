@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RUI-JIN-EN Skin R002 LP\n"
+"POT-Creation-Date: 2020-12-04 22:19+0900\n"
+"PO-Revision-Date: 2020-12-22 13:05+0900\n"
+"Last-Translator: akutsu <akutsu@m-g-n.me>\n"
+"Language-Team: mgn <info@m-g-n.me>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: snow-monkey-dropdown-navigation.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;"
+"esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: .themes\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: vendor\n"
+"X-Poedit-SearchPathExcluded-4: tests\n"
+
+#: App/Setup/Activate.php:28
+msgid "[RUI-JIN-EN Block Patterns] This Plugin must need the premium theme Snow Monkey."
+msgstr ""
+"【類人猿ブロックパターン】このプラグインはプレミアムテーマ Snow Monkeyが必須です."
+
+#: App/Setup/AdminMenu.php:24
+msgid "[RUI-JIN-EN Skin] Type LP(R002)"
+msgstr ""
+"類人猿スキン：LP向け（R002）"
+
+#: App/Setup/AdminMenu.php:52
+msgid "Recommended settings for Snow Monkey customization items"
+msgstr ""
+"Snow Monkeyのカスタマイズ項目のおすすめ設定"
+
+#: App/Setup/AdminMenu.php:57
+msgid "Make the recommended settings"
+msgstr ""
+"おすすめの設定にする"

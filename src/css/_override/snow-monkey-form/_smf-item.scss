@@ -1,0 +1,116 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../_foundation/variable" as v;
+@use "../../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.smf-form{
+	//フォーム用のアクセントカラー変数
+	--rje_form_accent_color: var(--accent-color, #cd162c);
+}
+
+.smf-form .smf-item:not(:root){
+	//テキスト・テキストエリアフィールド
+	.smf-text-control__control,
+	.smf-textarea-control__control{
+		width: 100%;
+		padding: 0.75rem 1.25rem;
+		background-color: #e7e7e7;
+		border-color: #e7e7e7;
+		border-radius: 0;
+		&::placeholder {
+			color: #8f8f8f;
+		}
+		&:hover,
+		&:active{
+			border-color: var(--rje_form_accent_color, #cd162c);
+		}
+		&:focus{
+			background-color: #fff;
+			border-color: var(--rje_form_accent_color, #cd162c);
+		}
+	}
+
+	//チェックボックス・ラジオボタン
+	.smf-checkbox-control__control,
+	.smf-radio-button-control__control{
+		margin-top: 0;
+		background-color: #e7e7e7;
+		border-color: #e7e7e7;
+		&:checked{
+			background-color: var(--rje_form_accent_color, #cd162c);
+			border-color: var(--rje_form_accent_color, #cd162c);
+		}
+		&:hover{
+			border-color: var(--rje_form_accent_color, #cd162c);
+		}
+	}
+	.smf-checkbox-control,
+	.smf-radio-button-control{
+		align-items: center;
+	}
+	.smf-checkbox-control__control{
+		border-radius: 0;
+	}
+
+	//セレクトボックス
+	.smf-select-control__control:not(:root){
+		border-color: #e7e7e7;
+		border-radius: 0;
+		&:hover{
+			border-color: var(--rje_form_accent_color, #cd162c);
+		}
+	}
+	.smf-select-control__toggle:not(:root){
+		background-color: #e7e7e7;
+	}
+
+	//ファイルアップロード
+	.smf-file-control__label{
+		font-size: 0.86em;
+	}
+}
+
+//ボタン
+.smf-button-control:not(:root) button{
+	@include i.button--ghost;
+	background: unset;
+	color: var(--accent-color, #cd162c);
+	&:hover,
+	&:focus,
+	&:active{
+		background-color: var(--rje_form_accent_color, #cd162c);
+		border-color: var(--rje_form_accent_color, #cd162c);
+		color: #fff;
+	}
+}
+
+
+//ポリシーに同意する
+.smf-item.is-policy-check:not(:root){
+	margin-top: i.px_to_rem(64);
+	.smf-item__controls{
+		text-align: center;
+	}
+}
+
+//必須入力表記
+.snow-monkey-form[data-screen="input"] .is-required .smf-item__label__text{
+	&::after{
+		content: "必須";
+		display: inline-block;
+		margin-left: 1rem;
+		padding: 0.5em;
+		background-color: var(--accent-color, #cd162c);
+		font-size: i.px_to_rem(10);
+		line-height: 1;
+		color: #fff;
+	}
+}
+
+.smf-progress-tracker:not(:root){
+	margin-bottom: i.px_to_rem(64);
+}
