@@ -1,26 +1,49 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-@use "../../_foundation/variable" as v;
+// @use "../../_foundation/variable" as v;
 @use "../../_foundation/import" as i;
 
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-//コンテナ
-.l-contents__container{
-}
-
-
-//コンテンツ内包
+//コンテンツ内包.
 .l-contents__inner{
+	//トップページ.
 	.home &{
 		padding-top: 0;
 		padding-bottom: 0;
 	}
+	//トップページ以外.
 	body:not(.home) &{
 		@include i.mq(lg){
 			padding-bottom: i.px_to_rem(120);
+		}
+	}
+	//投稿ページ.
+	.single &{
+		@include i.mq(lg){
+			padding-top: i.px_to_rem(100);
+		}
+	}
+}
+
+//ボディ.
+.l-contents__body{
+	.single &{
+		background-color: #F5F5F5;
+	}
+}
+
+//サイドバー
+.l-contents__sidebar:not(:root){
+	.c-widget__title,
+	h2{
+		display: block;
+		font-size: i.px_to_rem(20);
+		&::before,
+		&::after{
+			content: unset;
 		}
 	}
 }
