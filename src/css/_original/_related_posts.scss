@@ -1,0 +1,39 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../_foundation/variable" as v;
+@use "../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.rje-r001corp-a_related_posts{
+	margin-bottom: 3rem;
+	@include i.mq(lg){
+		margin-top: -1.8rem;
+		margin-bottom: 3.6rem;
+	}
+	.c-entries--rich-media{
+		.c-entries__item{
+			@include i.mq(sm, max, true){
+				flex-basis: 100%;
+				max-width: 100%;
+			}
+			@include i.mq(lg){
+				flex-basis: 33.3%;
+				max-width: 33.3%;
+			}
+		}
+	}
+	.p-related-posts__title:not(:root){
+		display: block;
+		margin-bottom: i.px_to_rem(30);
+		&::before,
+		&::after{
+			display: none;
+		}
+		@include i.mq(lg){
+			margin-bottom: i.px_to_rem(40);
+		}
+	}
+}

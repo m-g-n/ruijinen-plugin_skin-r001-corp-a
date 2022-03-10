@@ -12,7 +12,7 @@ class EntryHeader{
 	/**
 	 * Properties.
 	 */
-	private $meta_key = 'rje_r002lp_a_sub_title';
+	private $meta_key = 'rje_r001corp_a_sub_title';
 
 	/**
 	 * Constructor.
@@ -60,6 +60,7 @@ class EntryHeader{
 	public function view_subtitle() {
 		add_filter( 'snow_monkey_template_part_render_template-parts/archive/entry/header/header', array( $this, 'add_sub_title'), 10, 3);
 		add_filter( 'snow_monkey_template_part_render_template-parts/content/entry/header/header', array( $this, 'add_sub_title'), 10, 3);
+		add_filter( 'snow_monkey_template_part_render_template-parts/common/page-header', array( $this, 'add_sub_title'), 10, 3);
 
 		//投稿アーカイブのタイトルを書換
 		add_filter( 
@@ -73,14 +74,15 @@ class EntryHeader{
 		);
 	}
 
+
 	/**
-	 * ページタイトル上部にサブタイトルを追記する.
+	 * 投稿タイトル上部にサブタイトルを追記する.
 	 */
 	public function add_sub_title( $html, $name, $vars ) {
 		$subtitle = $this->get_subtitle();
 		if ( $subtitle ) {
-			$before = '/<h1 class="c-entry__title">/';
-			$after = '<div class="rje-r002lp-a_entry_subtitle">'.$subtitle.'</div><h1 class="c-entry__title">';
+			$before = '/<\/h1>/';
+			$after = '</h1><div class="rje-r001corp-a_entry_subtitle">'.$subtitle.'</div>';
 			$html = preg_replace( $before, $after, $html );
 		}
 		return $html;
@@ -99,10 +101,8 @@ class EntryHeader{
 				$text = get_post_meta( $queried_object->ID, $this->meta_key, true);
 			}
 		}
-		$subtitle = apply_filters( 'rje_r002lp_a_page_sub_title', $text );
+		$subtitle = apply_filters( 'rje_r001corp_a_page_sub_title', $text );
 		return $subtitle;
 	}
 
 }
-
-

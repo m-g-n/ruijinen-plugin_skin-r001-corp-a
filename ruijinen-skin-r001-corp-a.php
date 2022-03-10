@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin name: 類人猿 企業サイトパターン向けスキンA
- * Description: 類人猿企業サイトパターンパターンに合ったSnow Monkeyスキンです
+ * Plugin name: 類人猿 企業サイト向けパターン スキンA
+ * Description: 企業サイト向けパターンに合ったスキンです
  * Version: 0.0.0.0.1
  * Tested up to: 5.9
  * Requires at least: 5.9

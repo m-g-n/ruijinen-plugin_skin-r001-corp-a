@@ -8,6 +8,7 @@
 // スタイル
 // ------------------------------------------------------
 .wp-profile-box{
+	background-color: #fff;
 	@include i.mq(lg){
 		margin-top: 4.5rem;
 	}
@@ -28,5 +29,10 @@
 	letter-spacing: 0.05em;
 }
 .wp-profile-box__archives-btn{
-	border-radius: 6.25rem;
+	border-radius: unset;
+}
+.wp-profile-box__figure{
+	img{
+		border-radius: unset;
+	}
 }

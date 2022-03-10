@@ -1,35 +1,47 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-@use "../../_foundation/variable" as v;
+// @use "../../_foundation/variable" as v;
 @use "../../_foundation/import" as i;
 
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-//ウィジェットエリア
-.l-footer-widget-area{
-	padding-top: i.px_to_rem(30);
-	padding-bottom: 0;
-	border-top: none;
-	.c-row{
-		margin-bottom: 0;
-	}
+.l-footer{
+	background-color: #000;
+	border-top: unset;
+}
+//フッターウィジェット.
+.l-footer-widget-area:not(:root){
+	padding-top: 0;
 }
 .l-footer-widget-area__item:not(:root){
-	margin-bottom: 0 !important;
-	a{
-		// text-decoration: none;
-		color: var(--_color-text,#333);
+	margin-bottom: 1rem;
+}
+
+//フッターサブナビゲーションのスタイル調整
+.p-footer-sub-nav {
+	border-top: none;
+	padding-top: 24px;
+	@include i.mq(lg){
+		padding-top: 3rem;
+	}
+	.c-navbar{
+		@include i.mq(lg,max,true){
+			justify-content: center;
+		}
+	}
+	.c-navbar__item a{
+		color: #fff;
+		@include i.mq(md,max,true){
+			padding-top: 0.25rem;
+			padding-bottom: 0.25rem;
+		}
 	}
 }
 
 //コピーライト
-.c-copyright{
-	display: flex;
-	justify-content: center;
-	padding: i.px_to_rem(20);
-	background-color: unset;
-	font-size: i.px_to_rem(12);
-	color: var(--_color-text,#333);
+.c-copyright {
+	background-color: #000;
+	text-align: center;
 }

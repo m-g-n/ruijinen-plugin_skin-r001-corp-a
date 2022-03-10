@@ -12,17 +12,15 @@
 @use '_override/snow-monkey/l-header';
 @use '_override/snow-monkey/l-contents';
 @use '_override/snow-monkey/l-footer';
-@use '_override/snow-monkey/c-entries';
-@use '_override/snow-monkey/c-pagination';
 @use '_override/snow-monkey/c-entry';
-@use '_override/snow-monkey/c-widget';
-@use '_override/snow-monkey/u-slim-width';
+@use '_override/snow-monkey/c-pagination';
 @use '_override/snow-monkey/wp-profile-box';
-@use '_override/snow-monkey/has-xxx-font-size';
-
 
 //Snow Monkey Form
 @use '_override/snow-monkey-form/smf-item';
+
+//Snow Monkey Blocks
+@use '_override/snow-monkey-blocks/smb-section';
 
 
 // ------------------------------------------------------
@@ -30,4 +28,6 @@
 // ------------------------------------------------------
 @use '_original/pagination_arrow'; //ページネーションの矢印.
 @use '_original/prev_next_nav'; //前へ次へナビゲーション.
+@use '_original/entry_header'; //single用の投稿ヘッダー.
 @use '_original/entry_subtitle'; //ページサブタイトル.
+@use '_original/related_posts'; //関連記事.
