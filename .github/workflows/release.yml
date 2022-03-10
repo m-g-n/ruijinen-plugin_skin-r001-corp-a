@@ -63,7 +63,7 @@ jobs:
       - name: Zip Release 
         uses: TheDoctor0/zip-release@0.4.1
         with:
-          filename: 'ruijinen-skin-r002-lp-a.zip' # ファイル名
+          filename: 'ruijinen-skin-r001-corp-a.zip' # ファイル名
           exclusions: '*.git* /*node_modules/* .editorconfig /*src/*scss/*' # 除外設定
           directory: '.'
           path: '.'
