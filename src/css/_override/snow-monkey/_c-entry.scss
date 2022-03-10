@@ -1,7 +1,7 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-@use "../../_foundation/variable" as v;
+// @use "../../_foundation/variable" as v;
 @use "../../_foundation/import" as i;
 
 // ------------------------------------------------------
@@ -15,10 +15,6 @@
 		margin-bottom: i.px_to_rem(64);
 	}
 	//ページタイトル
-	.c-entry__title{
-		order: 2;
-		@include i.heading2;
-	}
 	.page &,
 	.blog &,
 	.archive &{
@@ -26,6 +22,24 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			@include i.mq(lg){
+				font-size: i.px_to_rem(40);
+			}
+		}
+	}
+	.single &{
+		padding-bottom: i.px_to_rem(20);
+		border-bottom: 1px solid #cfcfcf;
+		.c-entry__title{
+			font-size: i.px_to_rem(24);
+			order: 2;
+			@include i.mq(md){
+				font-size: i.px_to_rem(32);
+			}
+		}
+		.c-entry__meta{
+			order: 1;
+			margin-bottom: 1rem;
 		}
 	}
 	//メタ
@@ -71,11 +85,11 @@
 		min-width: 100px;
 		margin-right: i.px_to_rem(25);
 		padding: 0.25rem 0.5rem;
-		border: 1px solid;
+		background-color: var(--accent-color,#cd162c);
 		font-size: i.px_to_rem(12);
 		text-align: center;
 		line-height: 1;
-		color: var(--accent-color,#cd162c);
+		color: #fff;
 		svg{
 			display: none;
 		}
@@ -93,57 +107,12 @@
 	}
 }
 //アイキャッチ付き
-.c-page-header{
-	margin-top: 1rem;
-	margin-right: auto;
-	margin-left: auto;
-	max-width: calc(100% - 2rem);
-	@include i.mq(sm){
-		margin-top: i.px_to_rem(32);
-		max-width: calc(100% - i.px_to_rem(64));
-	}
-	@include i.mq(lg){
-		margin-top: 0;
-		max-width: calc(100% - i.px_to_rem(120));
-	}
-	&[data-has-content="true"]{
-		.c-page-header__bgimage{
-			&::after{
-				content: "";
-				position: absolute;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				margin: auto;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(#000, 0.4);
-			}
-		}
-	}
-	//サイドバーありテンプレートではない場合のみ
-	body:not([data-has-sidebar="true"]) &{
-		margin-right: auto;
-		margin-left: auto;
-		max-width: calc(100% - 2rem);
-		@include i.mq(sm){
-			margin-top: i.px_to_rem(32);
-			max-width: calc(100% - i.px_to_rem(64));
-		}
-		@include i.mq(lg){
-			margin-top: 0;
-			max-width: calc(100% - i.px_to_rem(120));
-		}
-	}
-}
 .c-page-header__content{
 	display: flex;
 	flex-direction: column;
-	// align-items: center;
 }
 .c-page-header__title{
-	@include i.heading1;
+	// @include i.heading1;
 	order: 2;
 }
 .c-page-header__meta{
@@ -167,6 +136,11 @@
 			}
 		}
 	}
+	.wp-share-buttons{
+		@include i.mq(lg){
+			display: none;
+		}
+	}
 }
 .c-entry__content{
 	>:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6)+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(.is-style-RJE_R002LP_cta_fix), .textwidget>:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6)+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6){
@@ -177,24 +151,6 @@
 	.alignfull+.alignfull {
 		margin-top: 0;
 	}
-	> h2{
-		@include i.heading2;
-		color: var(--accent-color,#cd162c);
-		&::after{
-			content: "";
-			display: block;
-			margin-top: i.px_to_rem(10);
-			width: i.px_to_rem(32);
-			height: 1px;
-			background-color: var(--accent-color,#cd162c);
-		}
-	}
-	> h3{
-		@include i.heading3;
-	}
-	> h4{
-		@include i.heading4;
-	}
 	> ul{
 		> li::marker{
 			color:var(--accent-color,#cd162c);
@@ -204,46 +160,31 @@
 		@include i.paragraph;
 	}
 }
-.blog .c-entry__content > *{
-	max-width: 920px;
-}
+
 
 //フッター
 .c-entry__footer{
 	@include i.mq(lg){
 		margin-top: i.px_to_rem(72);
 	}
-	.archive &,
-	.blog &{
-		max-width: 920px;
-		margin-right: auto;
-		margin-left: auto;
-	}
 }
 
-//関連記事
-.c-entry-aside{
-	margin-top: i.px_to_rem(72);
-	@include i.mq(md){
-		margin-top: i.px_to_rem(105);
+.wp-share-button--icon.wp-share-button--facebook .wp-share-button__button,
+.wp-share-button--icon.wp-share-button--twitter .wp-share-button__button{
+	background-color: transparent;
+	text-align: center;
+	path{
+		fill: #333 !important;
+		&.is-fill-white{
+			fill: #fff !important;
+		}
 	}
-	@include i.mq(lg){
-		max-width: 920px;
-		margin-right: auto;
-		margin-left: auto;
-	}
-	.c-entries--text2 .c-entries__item:first-child > a {
-		padding-top: 0;
-	}
-}
-.p-related-posts__title{
-	@include i.smb-section-title;
-	margin-bottom: i.px_to_rem(30);
-	&::before,
-	&::after{
-		display: none;
-	}
-	@include i.mq(lg){
-		margin-bottom: i.px_to_rem(40);
+	svg {
+		height: 85%;
+		width: 85%;
+		@include i.mq(lg){
+			height: 90%;
+			width: 90%;
+		}
 	}
 }

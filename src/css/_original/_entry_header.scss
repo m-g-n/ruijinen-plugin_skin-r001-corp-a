@@ -1,18 +1,25 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-// @use "../_foundation/variable" as v;
+@use "../_foundation/variable" as v;
 @use "../_foundation/import" as i;
 
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-.rje-r001corp-a_entry_subtitle{
+.rje-r001corp-a_entry_header{
 	display: flex;
 	flex-direction: column;
-	font-size: 1rem;
-	color: #666;
-	:not(.c-page-header) &{
-		align-items: center;
+	align-items: center;
+	padding-top: i.px_to_rem(40);
+	padding-bottom: i.px_to_rem(40);
+	@include i.mq(lg){
+		padding-top: i.px_to_rem(80);
+		padding-bottom: i.px_to_rem(80);
 	}
+}
+//ページタイトル
+.rje-r001corp-a_entry_header__title{
+	font-size: i.px_to_rem(40);
+	font-weight: bold;
 }

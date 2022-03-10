@@ -1,34 +1,36 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-@use "../../_foundation/variable" as v;
+// @use "../../_foundation/variable" as v;
 @use "../../_foundation/import" as i;
 
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
 //ヘッダ
-.l-header__content > .l-1row-header > .c-fluid-container{
-	@include i.mq(lg){
-		padding-top: i.px_to_rem(20);
-		padding-right: i.px_to_rem(36);
-		padding-bottom: i.px_to_rem(20);
-		padding-left: i.px_to_rem(60);
-	}
-}
-[data-scrolled="true"] .l-header__content > .l-1row-header > .c-fluid-container{
-	padding-top: 0;
-	padding-bottom: 0;
-}
 [data-scrolled="false"] .l-header--sticky-lg{
 	box-shadow: none;
 }
-
+.l-header__content > .l-1row-header > .c-container,
+.l-header__content > .l-1row-header > .c-fluid-container{
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
 
 //グローバルナビゲーション.
 .p-global-nav{
+	.c-navbar__item{
+		&:not(:first-child){
+			margin-left: i.px_to_rem(40);
+		}
+	}
 	.c-navbar__item > a{
-		padding: i.px_to_rem(24);
+		padding: i.px_to_rem(12) i.px_to_rem(22);
+		font-size: i.px_to_rem(18);
 		font-weight: normal;
+	}
+	.c-navbar__item.is-btn{
+		background-color: var(--accent-color,#cd162c);
+		color: #fff;
 	}
 }

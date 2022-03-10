@@ -1,7 +1,7 @@
 // ------------------------------------------------------
 // 設定・読み込み・変数など
 // ------------------------------------------------------
-@use "../../_foundation/variable" as v;
+// @use "../../_foundation/variable" as v;
 @use "../../_foundation/import" as i;
 
 // ------------------------------------------------------
@@ -17,12 +17,22 @@
 .c-pagination__item-link{
 	width: i.px_to_rem(32);
 	height: i.px_to_rem(32);
-	margin-right: 6px;
-	margin-left: 6px;
-	border-radius: 50%;
+	margin-right: i.px_to_rem(6);
+	margin-left: i.px_to_rem(6);
 	font-size: 1rem;
+	@include i.mq(lg){
+		font-size: i.px_to_rem(20);
+		width: i.px_to_rem(50);
+		height: i.px_to_rem(50);
+		margin-right: i.px_to_rem(10);
+		margin-left: i.px_to_rem(10);
+	}
 }
 .c-pagination__item-ellipsis,
 .c-pagination__item-link{
 	background-color: unset;
+}
+.c-pagination__item.current{
+	background-color: #f5f5f5;
+	color: #898989;
 }

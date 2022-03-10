@@ -7,10 +7,20 @@
 // ------------------------------------------------------
 // スタイル
 // ------------------------------------------------------
-.u-slim-width{
-	max-width: 47.5em !important;
-}
-//slim幅指定の変数の値を変更
-[data-has-sidebar=false][data-is-slim-width=true] .c-entry__content {
-    --wp-block-width: 47.5rem;
+.smb-section__header{
+	display: flex;
+	flex-direction: column;
+	.smb-section__subtitle{
+		order: 2;
+		margin-top: 0.5rem;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #666;
+	}
+	.smb-section__title{
+		order: 1;
+		&::after{
+			content: unset;
+		}
+	}
 }
