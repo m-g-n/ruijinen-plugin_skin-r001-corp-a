@@ -29,7 +29,7 @@ class AutoUpdate{
 			'm-g-n',
 			'ruijinen-plugin_skin-r001-corp-a',
 			[
-				// 'description_url'  => 'https://rui-jin-en.com/block_patterns/r001-corp/', //TODO：リンク先設定したらコメントアウト外す
+				'description_url'  => 'https://rui-jin-en.com/block_patterns/r001-corp/',
 				'faq_url'          => 'https://rui-jin-en.com/help/',
 				'changelog_url'    => 'https://rui-jin-en.com/category/product-renew/',
 				'icons' => [
