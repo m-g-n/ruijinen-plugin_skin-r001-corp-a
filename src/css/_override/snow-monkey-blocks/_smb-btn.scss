@@ -1,0 +1,29 @@
+// ------------------------------------------------------
+// 設定・読み込み・変数など
+// ------------------------------------------------------
+@use "../../_foundation/variable" as v;
+@use "../../_foundation/import" as i;
+
+// ------------------------------------------------------
+// スタイル
+// ------------------------------------------------------
+.smb-btn{
+	.is-ghost-white &{
+		&:hover{
+			opacity: 1;
+			background-color: #fff !important;
+			.smb-btn__label{
+				filter: invert(100%) grayscale(100%) contrast(100);
+			}
+		}
+	}
+	.is-ghost-black &{
+		&:hover{
+			opacity: 1;
+			background-color: #000 !important;
+			.smb-btn__label{
+				filter: invert(100%) grayscale(100%) contrast(100);
+			}
+		}
+	}
+}
