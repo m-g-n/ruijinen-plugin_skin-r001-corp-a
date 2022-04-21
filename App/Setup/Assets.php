@@ -14,6 +14,7 @@ class Assets {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_style' ] );
 	}
 
 	/**
@@ -27,4 +28,15 @@ class Assets {
 			filemtime( RJE_SKIN_R001_CORP_A_PATH . '/dist/css/style.css' )
 		);
 	}
+
+	/**
+	 * Enqueue editor assets
+	 */
+	public function enqueue_editor_style() {
+		$sm_style_handles = \Framework\Helper::get_main_style_handle();
+		$editor_filename = RJE_SKIN_R001_CORP_A_URL .'dist/css/style.css';
+		$editor_filetime = ( file_exists( RJE_BP_PLUGIN_PATH . $editor_filename ) ) ? filemtime( RJE_SKIN_R001_CORP_A_PATH . $editor_filename ) : NULL;
+		wp_enqueue_style( 'r001-corp-a-editor', $editor_filename, $sm_style_handles, $editor_filetime );
+	}
+
 }
