@@ -50,6 +50,7 @@ class Bootstrap {
 	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, 'bootstrap' ] );
+		add_action( 'init', [ $this, 'load_textdomain' ] );
 		add_action( 'after_setup_theme', [ $this, 'themes_customize' ] );
 	}
 
@@ -57,11 +58,23 @@ class Bootstrap {
 	 * Bootstrap.
 	 */
 	public function bootstrap() {
-		//クラスオブジェクト作成
-		new App\Setup\ActivatePlugin();
-		new App\Setup\AutoUpdate();
-		new App\Setup\TextDomain();
+		//自動更新機能.
+		new App\Setup\AutoUpdate(); 
+		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
+		$activate_check = new App\Setup\ActivateCheck();
+		if ( !empty( $activate_check->messages ) ) {
+			add_action('admin_notices', array( $activate_check,'make_alert_message'));
+			return;
+		}
+		//CSS・JSの読み込み.
 		new App\Setup\Assets();
+	}
+
+	/**
+	 * Load Textdomain.
+	 */
+	public function load_textdomain() {
+		new App\Setup\TextDomain();
 	}
 
 	/**
