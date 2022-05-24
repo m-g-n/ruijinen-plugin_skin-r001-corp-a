@@ -58,9 +58,15 @@ class Bootstrap {
 	 * Bootstrap.
 	 */
 	public function bootstrap() {
-		//クラスオブジェクト作成
-		new App\Setup\ActivatePlugin();
-		new App\Setup\AutoUpdate();
+		//自動更新機能.
+		new App\Setup\AutoUpdate(); 
+		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
+		$activate_check = new App\Setup\ActivateCheck();
+		if ( !empty( $activate_check->messages ) ) {
+			add_action('admin_notices', array( $activate_check,'make_alert_message'));
+			return;
+		}
+		//CSS・JSの読み込み.
 		new App\Setup\Assets();
 	}
 
