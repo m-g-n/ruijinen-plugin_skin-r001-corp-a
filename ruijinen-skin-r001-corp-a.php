@@ -2,7 +2,7 @@
 /**
  * Plugin name: 類人猿 企業サイト向けパターン スキンA
  * Description: 企業サイト向けパターンに合ったスキンです
- * Version: 1.4.1
+ * Version: 1.5.0
  * Tested up to: 5.9
  * Requires at least: 5.9
  * Requires PHP: 5.6
@@ -11,7 +11,7 @@
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: ruijinen-skin-r001-corp-a
- * 
+ *
  * @package ruijinen-skin-r001-corp-a
  * @author mgn
  * @license GPL-2.0+
@@ -59,7 +59,7 @@ class Bootstrap {
 	 */
 	public function bootstrap() {
 		//自動更新機能.
-		new App\Setup\AutoUpdate(); 
+		new App\Setup\AutoUpdate();
 		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
 		$activate_check = new App\Setup\ActivateCheck();
 		if ( !empty( $activate_check->messages ) ) {
