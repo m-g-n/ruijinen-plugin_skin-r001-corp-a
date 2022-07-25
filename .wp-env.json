@@ -1,0 +1,31 @@
+{
+  "core": "https://ja.wordpress.org/latest-ja.zip",
+  "plugins": [
+    ".",
+    "https://downloads.wordpress.org/plugin/all-in-one-wp-migration.zip",
+    "https://downloads.wordpress.org/plugin/disable-comments.zip",
+    "https://downloads.wordpress.org/plugin/easy-access-reusable-blocks.zip",
+    "https://downloads.wordpress.org/plugin/simple-local-avatars.zip",
+    "https://downloads.wordpress.org/plugin/query-monitor.zip",
+    "https://downloads.wordpress.org/plugin/snow-monkey-blocks.zip",
+    "https://downloads.wordpress.org/plugin/snow-monkey-editor.zip",
+    "https://downloads.wordpress.org/plugin/snow-monkey-forms.zip",
+    "https://downloads.wordpress.org/plugin/wordpress-beta-tester.zip",
+    "https://downloads.wordpress.org/plugin/duplicate-post.zip",
+    "https://github.com/m-g-n/ruijinen-plugin_block-patterns/releases/latest/download/ruijinen-block-patterns.zip",
+    "https://github.com/m-g-n/ruijinen-plugin_block-patterns--r001-corp/releases/latest/download/ruijinen-block-patterns-r001-corp.zip"
+  ],
+  "port": 1041,
+  "env": {
+    "tests": {
+      "port": 1042
+    }
+  },
+  "config": {
+    "WP_DEBUG": true
+  },
+  "mappings": {
+    ".export": "./.export",
+    "php.ini": "./.export/php.ini"
+  }
+}
