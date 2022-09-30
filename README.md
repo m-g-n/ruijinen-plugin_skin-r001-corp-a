@@ -17,6 +17,9 @@
 - composer install でパッケージをインストール
 
 # 変更履歴
+## 1.6.0
+- Node.jsパッケージのアップグレード
+- GitHub Actionsのトリガー調整
 ## 1.5.0
 - wp-env環境の導入
 - BackstopJSの導入
