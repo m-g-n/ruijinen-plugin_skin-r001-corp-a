@@ -26,6 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * declaration constant.
  */
+define( 'RJE_SKIN_R001_CORP_A_KEY', 'RJE_SKIN_R001CORP_A' ); //このプラグインのKey.
 define( 'RJE_SKIN_R001_CORP_A_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) . '/' );  //このプラグインのURL.
 define( 'RJE_SKIN_R001_CORP_A_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/' ); //このプラグインのパス.
 define( 'RJE_SKIN_R001_CORP_A_BASENAME', plugin_basename( __FILE__ ) ); //このプラグインのベースネーム.
@@ -58,8 +59,9 @@ class Bootstrap {
 	 * Bootstrap.
 	 */
 	public function bootstrap() {
-		//自動更新機能.
-		new App\Setup\AutoUpdate();
+		new App\Setup\AutoUpdate(); //自動更新機能.
+		new App\Setup\InPluginUpdateMessage(); //更新アラートメッセージに追加でメッセージを表示
+
 		//アクティベートチェックを行い問題がある場合はメッセージを出し離脱する.
 		$activate_check = new App\Setup\ActivateCheck();
 		if ( !empty( $activate_check->messages ) ) {
