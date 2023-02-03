@@ -37,6 +37,9 @@
 
 //サイドバー
 .l-contents__sidebar:not(:root){
+  @include i.mq(lg,max,true){
+    margin-top: 0;
+  }
 	.c-widget__title,
 	h2{
 		display: block;
