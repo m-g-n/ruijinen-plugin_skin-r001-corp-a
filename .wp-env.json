@@ -7,13 +7,11 @@
     "https://downloads.wordpress.org/plugin/easy-access-reusable-blocks.zip",
     "https://downloads.wordpress.org/plugin/simple-local-avatars.zip",
     "https://downloads.wordpress.org/plugin/query-monitor.zip",
-    "https://downloads.wordpress.org/plugin/snow-monkey-blocks.zip",
     "https://downloads.wordpress.org/plugin/snow-monkey-editor.zip",
     "https://downloads.wordpress.org/plugin/snow-monkey-forms.zip",
     "https://downloads.wordpress.org/plugin/wordpress-beta-tester.zip",
     "https://downloads.wordpress.org/plugin/duplicate-post.zip",
-    "https://github.com/m-g-n/ruijinen-plugin_block-patterns/releases/latest/download/ruijinen-block-patterns.zip",
-    "https://github.com/m-g-n/ruijinen-plugin_block-patterns--r001-corp/releases/latest/download/ruijinen-block-patterns-r001-corp.zip"
+    "https://github.com/m-g-n/ruijinen-plugin_block-patterns/releases/latest/download/ruijinen-block-patterns.zip"
   ],
   "port": 1041,
   "env": {
