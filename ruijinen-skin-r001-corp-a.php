@@ -2,7 +2,7 @@
 /**
  * Plugin name: 類人猿 企業サイト向けパターン スキンA
  * Description: 企業サイト向けパターンに合ったスキンです
- * Version: 1.8.0
+ * Version: 1.8.1
  * Tested up to: 6.1.1
  * Requires at least: 6.1
  * Requires PHP: 5.6
