@@ -17,6 +17,11 @@
 			}
 		}
 	}
+  .smb-btn-wrapper.is-ghost-white &{
+    &[style*="background-color:"]:hover{
+      background-color: #fff !important;
+    }
+  }
 	.is-ghost-black &{
 		&:hover{
 			opacity: 1;
@@ -26,4 +31,9 @@
 			}
 		}
 	}
+  .smb-btn-wrapper.is-ghost-black &{
+    &[style*="background-color:"]:hover{
+      background-color: #000 !important;
+    }
+  }
 }
