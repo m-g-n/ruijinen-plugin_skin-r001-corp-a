@@ -119,7 +119,7 @@ class Single{
 			ob_end_clean();
 			$html = str_replace(
 				'<footer ',
-				'<div class="rje-r001corp-a_related_posts c-container">'.$related_posts.'</div><footer ',
+				'<div class="rje-r001corp-a_related_posts"><div class="c-container">'.$related_posts.'</div></div><footer ',
 				$html
 			);
 		}
