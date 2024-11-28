@@ -17,6 +17,8 @@
 - composer install でパッケージをインストール
 
 # 変更履歴
+## 1.8.4
+- composerのアップデート
 ## 1.8.3
 - composer、nodeパッケージのアップデート
 ## 1.8.2
