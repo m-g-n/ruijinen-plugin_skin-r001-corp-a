@@ -6,77 +6,121 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  release:
     if: github.event.pull_request.merged == true
-    #nodeのバージョン設定 参考 https://docs.github.com/ja/free-pro-team@latest/actions/guides/building-and-testing-nodejs
-    strategy:
-      matrix:
-        node-version: [16.x]
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ZIP_NAME: ruijinen-skin-r001-corp-a.zip
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
-
-      #scriptの実施
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v7
         with:
-          node-version: '16.x'
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+
+      # プラグインのルートファイルのヘッダー「Version:」をリリースのタグ名にする
+      - name: Get version from plugin file
+        id: get_version
+        run: |
+          version="$(sed -n -E 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*([^[:space:]]+).*/\1/p' ruijinen-skin-r001-corp-a.php | head -n 1)"
+          if [ -z "$version" ]; then
+            echo "::error file=ruijinen-skin-r001-corp-a.php::Version ヘッダーが見つかりません"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      # 同じバージョンのリリースが既にある場合はリリース処理をスキップする
+      - name: Check existing release
+        id: check_release
+        env:
+          VERSION: ${{ steps.get_version.outputs.version }}
+        run: |
+          if gh release view "$VERSION" > /dev/null 2>&1; then
+            echo "::notice::バージョン $VERSION は既にリリース済みのため、リリース処理をスキップします"
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+          # タグだけ残っている場合（前回の失敗など）は既存タグでリリースを作成する
+          if git ls-remote --exit-code --tags origin "refs/tags/$VERSION" > /dev/null; then
+            echo "tag_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Use Node.js
+        if: steps.check_release.outputs.exists == 'false'
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
       - name: Install dependencies
+        if: steps.check_release.outputs.exists == 'false'
         run: npm ci
-      - name: build css and js
+
+      - name: Build css
+        if: steps.check_release.outputs.exists == 'false'
         run: npm run build
 
-      #composerの実施
       - name: Composer install
-        uses: docker://composer:1.9.1
-        with:
-          args: install
+        if: steps.check_release.outputs.exists == 'false'
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-      # release作成
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.event.pull_request.title }}
-          release_name: ${{ github.event.pull_request.title }}
-          body: ${{ github.event.pull_request.body }}
-          draft: false
-          prerelease: false
-
-      # release用のzip作成 https://github.com/marketplace/actions/zip-release
+      # 配布に必要なファイルだけを zip にまとめる（従来どおり zip 直下にファイルを配置）
+      # 実行時に必要なファイル・ディレクトリを追加した場合はこのリストにも追加すること
       - name: Zip Release
-        uses: TheDoctor0/zip-release@0.4.1
-        with:
-          filename: 'ruijinen-skin-r001-corp-a.zip' # ファイル名
-          exclusions: '*.git* /*node_modules/* .editorconfig /*src/*scss/*' # 除外設定
-          directory: '.'
-          path: '.'
-          type: 'zip'
+        if: steps.check_release.outputs.exists == 'false'
+        run: |
+          zip -r "$ZIP_NAME" \
+            ruijinen-skin-r001-corp-a.php \
+            App \
+            dist \
+            languages \
+            vendor \
+            README.md \
+            readme.txt \
+            -x '*.DS_Store'
 
-      # releaseにzipファイルを添付
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
+      - name: Create Release
+        if: steps.check_release.outputs.exists == 'false'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./ruijinen-skin-r001-corp-a.zip
-          asset_name: ruijinen-skin-r001-corp-a.zip
-          asset_content_type: application/zip
+          VERSION: ${{ steps.get_version.outputs.version }}
+          TARGET_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          TAG_EXISTS: ${{ steps.check_release.outputs.tag_exists }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          printf '%s\n' "$PR_BODY" > release-notes.md
+          if [ "$TAG_EXISTS" = "true" ]; then
+            target_args=(--verify-tag)
+          else
+            target_args=(--target "$TARGET_SHA")
+          fi
+          gh release create "$VERSION" "$ZIP_NAME" \
+            --title "$VERSION" \
+            --notes-file release-notes.md \
+            "${target_args[@]}"
 
-      # mainからdevにPR生成
-      - name: create-pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_branch: 'dev'
-          pr_title: "リリース残処理：mainの内容をdevへ反映"
-          pr_body: "Pulling main into dev"
-          pr_allow_empty: true
+      # main から dev への戻し PR を作成（既に開いている場合は作らない）
+      - name: Create pull request from main to dev
+        run: |
+          existing="$(gh pr list --base dev --head main --state open --json number --jq '.[0].number')"
+          if [ -n "$existing" ]; then
+            echo "::notice::main から dev への PR #$existing が既に存在します"
+            exit 0
+          fi
+          gh pr create \
+            --base dev \
+            --head main \
+            --title "リリース残処理：mainの内容をdevへ反映" \
+            --body "Pulling main into dev"
