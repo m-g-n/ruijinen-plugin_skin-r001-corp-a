@@ -5,7 +5,7 @@
 - Snow Monkeyテーマがインストールされてない環境では動きません
 
 # 開発環境
-- Node.js 24（`.nvmrc` 参照。nvm などで `nvm use` してください）
+- Node.js 24（`mise.toml` 参照。mise を使う場合は `mise install` で導入されます）
 - PHP 7.4 以上 / Composer
 
 # SCSSのコンパイル方法

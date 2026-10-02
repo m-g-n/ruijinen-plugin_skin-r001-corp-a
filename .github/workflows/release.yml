@@ -62,7 +62,7 @@ jobs:
         if: steps.check_release.outputs.exists == 'false'
         uses: actions/setup-node@v7
         with:
-          node-version-file: .nvmrc
+          node-version: '24' # mise.toml と合わせる
           cache: npm
 
       - name: Install dependencies
