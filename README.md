@@ -4,10 +4,14 @@
 ## このプラグイン動作の前提条件
 - Snow Monkeyテーマがインストールされてない環境では動きません
 
+# 開発環境
+- Node.js 24（`mise.toml` 参照。mise を使う場合は `mise install` で導入されます）
+- PHP 7.4 以上 / Composer
+
 # SCSSのコンパイル方法
 当プラグインディレクトリーまで移動したあと、
 
-- npm i でpackegeをインストール
+- npm ci でpackageをインストール
 - npm run watch でSCSSファイルの修正を常時監視（SCSSを修正したら即時CSSにコンパイルしてくれる）
 - npm run build でCSSにコンパイル（コマンド走ったときだけCSSをコンパイル）
 
@@ -15,6 +19,13 @@
 当プラグインディレクトリーまで移動したあと、
 
 - composer install でパッケージをインストール
+
+# リリース方法
+- バージョンはプラグインのルートファイル（`ruijinen-skin-r001-corp-a.php`）の `Version:` で管理します
+- dev へ PR をマージすると、dev → main のリリース PR（タイトルはバージョン番号）が自動作成されます
+- main へマージすると、そのバージョンをタグ名として GitHub Release と配布用 zip が作成されます
+  - 同じバージョンのリリースが既に存在する場合、リリース処理はスキップされます
+- リリース後、main → dev の戻し PR が自動作成されます
 
 # 変更履歴
 ## 1.8.4
