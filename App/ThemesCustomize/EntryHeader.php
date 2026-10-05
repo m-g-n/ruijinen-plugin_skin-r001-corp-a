@@ -114,17 +114,6 @@ class EntryHeader {
 		add_filter( 'snow_monkey_template_part_render_template-parts/archive/entry/header/header', array( $this, 'add_sub_title' ) );
 		add_filter( 'snow_monkey_template_part_render_template-parts/content/entry/header/header', array( $this, 'add_sub_title' ) );
 		add_filter( 'snow_monkey_template_part_render_template-parts/common/page-header', array( $this, 'add_sub_title' ) );
-
-		// 投稿アーカイブのタイトルを書換.
-		add_filter(
-			'rje_r001corp_a_page_sub_title',
-			function ( $text ) {
-				if ( is_category() || is_tag() ) {
-					$text = 'NEWS';
-				}
-				return $text;
-			}
-		);
 	}
 
 	/**
@@ -156,11 +145,6 @@ class EntryHeader {
 			$post_type = get_query_var( 'post_type' );
 			$post_type = is_array( $post_type ) ? reset( $post_type ) : $post_type;
 			$text      = strtoupper( (string) $post_type );
-		} elseif ( is_tax() ) {
-			$taxonomy = get_taxonomy( get_query_var( 'taxonomy' ) );
-			if ( $taxonomy && ! empty( $taxonomy->object_type ) ) {
-				$text = strtoupper( $taxonomy->object_type[0] );
-			}
 		} elseif ( is_home() || is_page() ) {
 			$queried_object = get_queried_object();
 			if ( $queried_object instanceof \WP_Post ) {
