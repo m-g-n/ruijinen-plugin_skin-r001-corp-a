@@ -33,6 +33,28 @@ jobs:
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
+      # README.md の変更履歴から該当バージョンの節（「## <バージョン>」から次の見出しまで）を取り出す
+      - name: Get changelog from README
+        id: get_changelog
+        env:
+          VERSION: ${{ steps.get_version.outputs.version }}
+        run: |
+          changelog="$(awk -v heading="## $VERSION" '
+            $0 == heading { found = 1; next }
+            found && /^#/ { exit }
+            found { print }
+          ' README.md | sed -e '/./,$!d')"
+          if [ -z "$changelog" ]; then
+            echo "::warning file=README.md::README.md の変更履歴に「## $VERSION」が見つかりません"
+            changelog="- README.md の変更履歴に $VERSION の記載がありません"
+          fi
+          delimiter="CHANGELOG_$(openssl rand -hex 8)"
+          {
+            echo "changelog<<$delimiter"
+            echo "$changelog"
+            echo "$delimiter"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Create a release pull request
         uses: bakunyo/git-pr-release-action@ff3f59a20f467c0e9974fd815db563d4f26a52c9 # master
         env:
@@ -41,4 +63,5 @@ jobs:
           GIT_PR_RELEASE_BRANCH_STAGING: dev
           GIT_PR_RELEASE_LABELS: release
           PKG_VERSION: ${{ steps.get_version.outputs.version }}
+          PKG_CHANGELOG: ${{ steps.get_changelog.outputs.changelog }}
           GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release/.git-pr-release-template
