@@ -34,16 +34,16 @@
   "author": "mgn",
   "license": "GPL-2.0+",
   "devDependencies": {
-    "@wordpress/env": "^11.16.0",
+    "@wordpress/env": "^12.0.0",
     "backstopjs": "^6.3.25",
-    "cssnano": "^9.1.2",
-    "del-cli": "^7.0.0",
-    "npm-run-all2": "^9.0.3",
+    "cssnano": "^9.9.0",
+    "del-cli": "^8.0.1",
+    "npm-run-all2": "^9.0.4",
     "postcss": "^8.5.28",
     "postcss-cli": "^12.0.0",
     "postcss-sort-media-queries": "^6.7.1",
     "postcss-sorting": "^10.0.0",
-    "sass": "^1.105.1"
+    "sass": "^1.106.1"
   },
   "browserslist": [
     ">0.25% in JP",
@@ -53,5 +53,9 @@
   ],
   "engines": {
     "node": ">=24"
+  },
+  "overrides": {
+    "isomorphic-git": "^1.38.6",
+    "qs": "^6.16.1"
   }
 }
